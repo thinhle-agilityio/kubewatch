@@ -160,7 +160,7 @@ func prepareSlackAttachment(e event.Event) slack.Attachment {
 	})
 
 	if color, ok := slackColors[e.Status]; ok {
-		attachment.Color = color
+		attachment.Color = color,
 	}
 
 	// attachment.MarkdownIn = []string{"fields"}
