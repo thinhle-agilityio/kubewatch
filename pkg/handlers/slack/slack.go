@@ -86,7 +86,7 @@ func (s *Slack) ObjectDeleted(obj interface{}) {
 }
 
 func (s *Slack) ObjectUpdated(oldObj, newObj interface{}) {
-	notifySlack(s, newObj, "updated")
+	// notifySlack(s, newObj, "updated")
 }
 
 func notifySlack(s *Slack, obj interface{}, action string) {
@@ -100,7 +100,7 @@ func notifySlack(s *Slack, obj interface{}, action string) {
 	// channelID, timestamp, err := api.PostMessage(s.Channel, "", params)
 
 	payload := slack.Payload {
-    Text: "Test Webhook",
+    // Text: "Test Webhook",
     // Username: "robot",
     // Channel: "#general",
     // IconEmoji: ":monkey_face:",
@@ -154,7 +154,10 @@ func prepareSlackAttachment(e event.Event) slack.Attachment {
 	// }
 
 	attachment := slack.Attachment {}
-	attachment.AddField(slack.Field { Title: "k8s", Value: msg })
+	attachment.AddField(slack.Field {
+		// Title: "k8s",
+		Value: msg
+	})
 
 	// if color, ok := slackColors[e.Status]; ok {
 	// 	attachment.Color = color
