@@ -17,8 +17,8 @@ limitations under the License.
 package handlers
 
 import (
-	"github.com/skippbox/kubewatch/config"
-	"github.com/skippbox/kubewatch/pkg/handlers/slack"
+	"github.com/thinhle-agilityio/kubewatch/config"
+	"github.com/thinhle-agilityio/kubewatch/pkg/handlers/slack"
 )
 
 // Handler is implemented by any handler.

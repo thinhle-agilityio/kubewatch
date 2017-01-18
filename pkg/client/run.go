@@ -19,10 +19,10 @@ package client
 import (
 	"log"
 
-	"github.com/skippbox/kubewatch/config"
-	"github.com/skippbox/kubewatch/pkg/handlers"
-	"github.com/skippbox/kubewatch/pkg/handlers/slack"
-	"github.com/skippbox/kubewatch/pkg/controller"
+	"github.com/thinhle-agilityio/kubewatch/config"
+	"github.com/thinhle-agilityio/kubewatch/pkg/handlers"
+	"github.com/thinhle-agilityio/kubewatch/pkg/handlers/slack"
+	"github.com/thinhle-agilityio/kubewatch/pkg/controller"
 )
 
 // Run runs the event loop processing with given handler

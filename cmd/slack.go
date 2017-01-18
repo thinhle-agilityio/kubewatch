@@ -18,7 +18,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/skippbox/kubewatch/config"
+	"github.com/thinhle-agilityio/kubewatch/config"
 	"github.com/Sirupsen/logrus"
 )
 
@@ -33,22 +33,22 @@ var slackConfigCmd = &cobra.Command{
 			logrus.Fatal(err)
 		}
 
-		token, err := cmd.Flags().GetString("token")
+		webhook, err := cmd.Flags().GetString("webhook")
 		if err == nil {
-			if len(token) > 0 {
-				conf.Handler.Slack.Token = token
+			if len(webhook) > 0 {
+				conf.Handler.Slack.Webhook = webhook
 			}
 		} else {
 			logrus.Fatal(err)
 		}
-		channel, err := cmd.Flags().GetString("channel")
-		if err == nil {
-			if len(channel) > 0 {
-				conf.Handler.Slack.Channel = channel
-			}
-		} else {
-			logrus.Fatal(err)
-		}
+		// channel, err := cmd.Flags().GetString("channel")
+		// if err == nil {
+		// 	if len(channel) > 0 {
+		// 		conf.Handler.Slack.Channel = channel
+		// 	}
+		// } else {
+		// 	logrus.Fatal(err)
+		// }
 
 		if err = conf.Write(); err != nil {
 			logrus.Fatal(err)
@@ -57,6 +57,6 @@ var slackConfigCmd = &cobra.Command{
 }
 
 func init() {
-	slackConfigCmd.Flags().StringP("channel", "c", "", "Specify slack channel")
-	slackConfigCmd.Flags().StringP("token", "t", "", "Specify slack token")
+	// slackConfigCmd.Flags().StringP("channel", "c", "", "Specify slack channel")
+	slackConfigCmd.Flags().StringP("webhook", "t", "", "Specify slack webhook")
 }

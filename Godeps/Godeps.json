@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/skippbox/kubewatch",
+	"ImportPath": "github.com/thinhle-agilityio/kubewatch",
 	"GoVersion": "go1.6",
 	"GodepVersion": "v74",
 	"Packages": [

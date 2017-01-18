@@ -16,7 +16,7 @@ limitations under the License.
 
 package main
 
-import "github.com/skippbox/kubewatch/cmd"
+import "github.com/thinhle-agilityio/kubewatch/cmd"
 
 func main() {
 	cmd.Execute()

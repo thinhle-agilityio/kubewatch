@@ -50,8 +50,8 @@ type Config struct {
 
 // Slack contains slack configuration
 type Slack struct {
-	Token   string `json:"token"`
-	Channel string `json:"channel"`
+	Webhook   string `json:"webhook"`
+	// Channel string `json:"channel"`
 }
 
 // New creates new config object
@@ -125,11 +125,11 @@ func (c *Config) CheckMissingResourceEnvvars() {
 	if !c.Resource.Services && os.Getenv("KW_SERVICE") == "true" {
 		c.Resource.Services = true
 	}
-	if (c.Handler.Slack.Channel == "") && (os.Getenv("SLACK_CHANNEL") != "") {
-		c.Handler.Slack.Channel = os.Getenv("SLACK_CHANNEL")
-	}
-	if (c.Handler.Slack.Token == "") && (os.Getenv("SLACK_TOKEN") != "") {
-		c.Handler.Slack.Token = os.Getenv("SLACK_TOKEN")
+	// if (c.Handler.Slack.Channel == "") && (os.Getenv("SLACK_CHANNEL") != "") {
+	// 	c.Handler.Slack.Channel = os.Getenv("SLACK_CHANNEL")
+	// }
+	if (c.Handler.Slack.Webhook == "") && (os.Getenv("SLACK_WEBHOOK") != "") {
+		c.Handler.Slack.Webhook = os.Getenv("SLACK_WEBHOOK")
 	}
 }
 
