@@ -168,7 +168,7 @@ func prepareSlackAttachment(e event.Event) slack.Attachment {
 	fallback := fmt.Sprintf(
 		"%s %s",
 		e.Reason,
-		e.Name
+		e.Name,
 	)
 	attachment.Fallback = &fallback
 
