@@ -1,13 +1,12 @@
 # Kubewatch
-[![Build Status](https://travis-ci.org/skippbox/kubewatch.svg?branch=master)](https://travis-ci.org/skippbox/kubewatch) [![Join us on Slack](https://s3.eu-central-1.amazonaws.com/ngtuna/join-us-on-slack.png)](https://skippbox.herokuapp.com)
 
-`kubewatch` is a Kubernetes watcher that currently publishes notification to Slack. Run it in your k8s cluster, and you will get event notifications in a slack channel.
+`kubewatch` is a Kubernetes watcher that currently publishes notification to Slack. Run it in your k8s cluster, and you will get event notifications in a slack channel. It use slack's webhooks URL instead of API token and channel.
 
 ## Run kubewatch in a Kubernetes cluster
 
-In order to run kubewatch in a Kubernetes cluster quickly, the easiest way is for you to create a [ConfigMap](https://github.com/thinhle-agilityio/kubewatch/blob/master/kubewatch-configmap.yaml) to hold kubewatch configuration. It contains a SLACK API token, channel.
+In order to run kubewatch in a Kubernetes cluster quickly, the easiest way is for you to create a [ConfigMap](https://github.com/thinhle-agilityio/kubewatch/blob/master/kubewatch-configmap.yaml) to hold kubewatch configuration.
 
-An example is provided at [`kubewatch-configmap.yaml`](https://github.com/thinhle-agilityio/kubewatch/blob/master/kubewatch-configmap.yaml), do not forget to update your own slack channel and token parameters. Alternatively, you could use secrets.
+An example is provided at [`kubewatch-configmap.yaml`](https://github.com/thinhle-agilityio/kubewatch/blob/master/kubewatch-configmap.yaml), do not forget to update your own slack webhook url parameters. Alternatively, you could use secrets.
 
 Create k8s configmap:
 
@@ -85,7 +84,7 @@ Kubewatch supports `config` command for configuration. Config file will be saved
 ### Configure slack
 
 ```console
-$ kubewatch config slack --channel <slack_channel> --token <slack_token>
+$ kubewatch config slack --webhook <webhook_url>
 ```
 
 ### Configure resources to be watched
@@ -99,11 +98,10 @@ $ kubewatch config resource --svc
 ```
 
 ### Environment variables
-You have an altenative choice to set your SLACK token, channel via environment variables:
+You have an altenative choice to set your SLACK webhook url via environment variables:
 
 ```console
-$ export KW_SLACK_TOKEN='XXXXXXXXXXXXXXXX'
-$ export KW_SLACK_CHANNEL='#channel_name'
+$ export KW_SLACK_WEBHOOK='XXXXXXXXXXXXXXXX'
 ```
 
 ### Run kubewatch locally
