@@ -22,7 +22,7 @@ import (
 	"os"
 
 	// "github.com/nlopes/slack"
-	"github.com/ashwanthkumar/slack-go-webhook"
+	"github.com/thinhle-agilityio/slack-go-webhook"
 
 	"github.com/thinhle-agilityio/kubewatch/config"
 	"github.com/thinhle-agilityio/kubewatch/pkg/event"
@@ -137,7 +137,7 @@ func checkMissingSlackWebhook(s *Slack) error {
 
 func prepareSlackAttachment(e event.Event) slack.Attachment {
 	msg := fmt.Sprintf(
-		"A %s in namespace %s has been %s: %s",
+		"A *%s* in namespace *%s* has been %s: *%s*",
 		e.Kind,
 		e.Namespace,
 		e.Reason,
@@ -172,7 +172,7 @@ func prepareSlackAttachment(e event.Event) slack.Attachment {
 	)
 	attachment.Fallback = &fallback
 
-	// attachment.MarkdownIn = []string{"fields"}
+	attachment.MarkdownIn = []string{"fields"}
 
 	return attachment
 }
