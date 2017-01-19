@@ -159,11 +159,18 @@ func prepareSlackAttachment(e event.Event) slack.Attachment {
 		Value: msg,
 	})
 
-	// if color, ok := slackColors[e.Status]; ok {
-	// 	attachment.Color = color
-	// }
-	color := "good"
-	attachment.Color = &color
+	if color, ok := slackColors[e.Status]; ok {
+		attachment.Color = &color
+	}
+	// color := "good"
+	// attachment.Color = &color
+
+	fallback := fmt.Sprintf(
+		"%s %s",
+		e.Reason,
+		e.Name
+	)
+	attachment.Fallback = &fallback
 
 	// attachment.MarkdownIn = []string{"fields"}
 
