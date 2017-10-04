@@ -109,3 +109,62 @@ $ export KW_SLACK_WEBHOOK='XXXXXXXXXXXXXXXX'
 ```console
 $ kubewatch
 ```
+
+### Update for Kubernetes >= 1.6
+
+From Kubernetes from 1.6 and upper, you have to grant permission to pod for accessing the kube API server through [RBAC Authorization](https://kubernetes.io/docs/admin/authorization/rbac/). Pod use Service Account (usually default Service Account) to access the API server. But Kubernetes grant no permissions to service account outside the `kube-system` namespace.
+
+So you have to create below ClusterRole and ClusterRoleBinding (find it under ./kubewatch-rbac.yaml):
+
+```
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+    name: kubewatch
+    namespace: default
+rules:
+- apiGroups:
+  - ""
+  - "extensions"
+  resources:
+  - configmaps
+  - secrets
+  - services
+  - endpoints
+  - ingresses
+  - nodes
+  - pods
+  verbs:
+  - list
+  - get
+  - watch
+- apiGroups:
+  - "*"
+  - ""
+  resources:
+  - events
+  - certificates
+  - secrets
+  verbs:
+  - create
+  - list
+  - update
+  - get
+  - patch
+  - watch
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: kubewatch
+  namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubewatch
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: default
+```
