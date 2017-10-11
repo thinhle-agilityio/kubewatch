@@ -25,7 +25,7 @@ Once the Pod is running, you will start seeing Kubernetes events in your configu
 
 ![slack](./docs/slack.png)
 
-To modify what notifications you get, update the `kubewatch` ConfigMap and turn on and off (true/false) resources:
+To modify what notifications you get, update the `kubewatch-configmap.yaml` ConfigMap and turn on and off (true/false) resources:
 
 ```
 resource:
@@ -36,6 +36,10 @@ resource:
       services: true
       pod: true
 ```
+
+- Kubewatch secret `KW_SLACK_WEBHOOK` will be used to config webhook url to a specific channel
+- If kubewatch-configmap have `handler/slack/webhook`, it will override webhook url in secret
+
 
 ## Building
 
